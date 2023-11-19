@@ -91,7 +91,7 @@ function SearchBar() {
 const IndexPage = () => {
   return (
     <main className='Main'>
-      <header className="Home-header">
+      <header className="Base-header">
         <p> Bienvenido a mi página</p>
       </header>
       <SearchBar />

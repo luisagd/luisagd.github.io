@@ -1,9 +1,50 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/base.css"
+import "../styles/base.css";
+import Fuse from 'fuse.js';
+import diacritics from 'diacritics'
+import { useLocation } from '@gatsbyjs/reach-router';
 
-const dictionary = require("../json/diccionario.json")
+const dictionary = require("../json/diccionario.json");
+
+function removeAccents(obj) {
+    if (typeof obj === 'string' || obj instanceof String) {
+        // return obj.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/'/g, '');
+        //fix ñ
+        return diacritics.remove(obj).replace(/'/g, '');
+    }
+    return obj
+}
+function getFn(obj, path) {
+    var value = Fuse.config.getFn(obj, path);
+    if (Array.isArray(value)) {
+        return value.map(el => removeAccents(el));
+    }
+    return removeAccents(value);
+}
+const fuseOptions = {
+    // isCaseSensitive: false,
+    // includeScore: false,
+    // shouldSort: true,
+    // includeMatches: false,
+    // findAllMatches: false,
+    // minMatchCharLength: 1,
+    // location: 0,
+    // threshold: 0.6,
+    // distance: 100,
+    // useExtendedSearch: false,
+    // ignoreLocation: false,
+    // ignoreFieldNorm: false,
+    // fieldNormWeight: 1,`
+    getFn: getFn,
+    keys: [
+        'word',
+        'definition'
+    ]
+};
+const fuse = new Fuse(dictionary, fuseOptions);
 
 function SearchResults() {
+    const location = useLocation();
     const [posts, setPosts] = useState([]);
 
     const fetchData = (word) => {
@@ -11,19 +52,20 @@ function SearchResults() {
         console.log("word:" + word);
 
         // Simulate fetching data locally from the imported JSON file
-        const filteredPosts = dictionary.filter(item =>
-            item.word.toLowerCase().includes(word.toLowerCase())
-        );
-
-        console.log("data:", filteredPosts);
-        setPosts(filteredPosts);
+        word = word.toLowerCase().replaceAll("'", "’");
+        const result = fuse.search(word).slice(0, 5);
+        // const result = dictionary.filter(item =>
+        //     item.word.toLowerCase().includes(word.toLowerCase())
+        // );
+        console.log("data:", result);
+        setPosts(result);
     };
 
     useEffect(() => {
         // 👇️ only runs once
-        const url = window.location.pathname.replace("/diccionario", "");
-        if (url !== "" && url !== "/") {
-            const word = url.replace("/", "");
+        const queryParams = new URLSearchParams(location.search);
+        const word = queryParams.get('q');
+        if (word !== "" && word !== "/") {
             console.log("URL word: " + word);
             fetchData(word);
         }
@@ -45,7 +87,7 @@ function SearchResults() {
             </form>
             <ul>
                 {posts.map((item) => (
-                    <li key={item.word}>{item.word}:{item.definition}</li>
+                    <li>{item.item.word}:{item.item.definition}</li>
                 ))}
             </ul>
         </div>
@@ -54,7 +96,7 @@ function SearchResults() {
 function Diccionario() {
     return (
         <main className="Main">
-            <header className="App-header">
+            <header className="Base-header">
                 <p>Diccionario Guaraní-Español - Español-Guaraní</p>
                 <SearchResults />
             </header>
