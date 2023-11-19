@@ -3,7 +3,6 @@ name: Gatsby Publish
 on:
   push:
     branches:
-      - master
       - gh-pages
 
 jobs:
