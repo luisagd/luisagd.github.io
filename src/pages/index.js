@@ -130,7 +130,7 @@ const IndexPage = () => {
         Congratulations
         <br />
         <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉
-          WEll, did i though?</span>
+          WEll, did i though? - Check number two though</span>
       </h1>
       <p style={paragraphStyles}>
         Edit <code style={codeStyles}>src/pages/index.js</code> to see this page
