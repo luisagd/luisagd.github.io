@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import "../styles/base.css";
+import "../styles/diccionario.css"
 import Fuse from 'fuse.js';
 import diacritics from 'diacritics'
 import { useLocation } from '@gatsbyjs/reach-router';
+import Footer from '../components/Footer';
 
 const dictionary = require("../json/diccionario.json");
 
@@ -100,6 +102,7 @@ function Diccionario() {
                 <p>Diccionario Guaraní-Español - Español-Guaraní</p>
                 <SearchResults />
             </header>
+            <Footer />
         </main>
     );
 }

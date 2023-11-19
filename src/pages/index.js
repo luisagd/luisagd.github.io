@@ -4,6 +4,7 @@ import React from 'react';
 import "../styles/index.css"
 import "../styles/base.css"
 import { navigate } from "gatsby";
+import Footer from '../components/Footer';
 
 
 const linkStyle = {
@@ -95,6 +96,7 @@ const IndexPage = () => {
         <p> Bienvenido a mi página</p>
       </header>
       <SearchBar />
+      <Footer />
     </main>
   )
 }
