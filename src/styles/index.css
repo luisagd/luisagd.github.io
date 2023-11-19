@@ -1,0 +1,33 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+}
+
+.Home-header {
+	min-height: 10vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.SearchBar {
+	margin: 10vh;
+}
+.Search-button {
+	height: 5vh;
+	width: 10vh;
+}
+input {
+	height: 5vh;
+	width: 50vw;
+	padding: 12px 20px;
+	box-sizing: border-box;
+}
+footer {
+	background-color: gray;
+	text-align: center;
+	margin-top: auto;
+	padding: 8px;
+}
