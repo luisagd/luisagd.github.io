@@ -5,6 +5,8 @@ import Fuse from 'fuse.js';
 import diacritics from 'diacritics'
 import { useLocation } from '@gatsbyjs/reach-router';
 import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
+
 
 const dictionary = require("../json/diccionario.json");
 
@@ -97,13 +99,19 @@ function SearchResults() {
 }
 function Diccionario() {
     return (
-        <main className="Main">
-            <header className="Base-header">
-                <p>Diccionario Guaraní-Español - Español-Guaraní</p>
-                <SearchResults />
-            </header>
+        <div>
+            <main className="Main">
+                <title>Diccionario Guaraní-Español y Español-Guaraní</title>
+                <meta name='description' content='El mejor diccionario Guaraní-Español y Español-Guaraní.' />
+                <Navbar />
+                <header className="Base-header">
+                    <p>Diccionario Guaraní-Español - Español-Guaraní</p>
+                    <SearchResults />
+                </header>
+            </main>
             <Footer />
-        </main>
+        </div>
+
     );
 }
 

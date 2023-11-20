@@ -5,25 +5,7 @@ import "../styles/index.css"
 import "../styles/base.css"
 import { navigate } from "gatsby";
 import Footer from '../components/Footer';
-
-
-const linkStyle = {
-  color: "#8954A8",
-  fontWeight: "bold",
-  fontSize: 16,
-  verticalAlign: "5%",
-}
-
-const HomeHeader = {
-  minHeight: '10vh',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: 'calc(10px + 2vmin)',
-  color: 'white',
-};
-
+import Navbar from '../components/Navbar';
 
 const links = [
   {
@@ -91,13 +73,18 @@ function SearchBar() {
 }
 const IndexPage = () => {
   return (
-    <main className='Main'>
-      <header className="Base-header">
-        <p> Bienvenido a mi página</p>
-      </header>
-      <SearchBar />
+    <div>
+      <main className='Main'>
+        <Navbar />
+        <header className="Base-header">
+          <p> Bienvenido a mi página</p>
+        </header>
+        <SearchBar />
+      </main>
       <Footer />
-    </main>
+    </div>
+
+
   )
 }
 
