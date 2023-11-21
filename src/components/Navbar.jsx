@@ -24,17 +24,27 @@ function Navbar() {
 			</Link>
 			<ul className={`NavMenu${isActive ? "-active" : ""}`}>
 				<li onClick={removeActive}>
-					<Link to="diccionario" className="Navlink">
+					<Link to="/diccionario" className="Navlink">
 						Diccionario
 					</Link>
 				</li>
 				<li onClick={removeActive}>
-					<Link to="geometria" className="Navlink">
-						Geometría Analítica y Plana
+					<Link to="/aritmetica-y-algebra" className="Navlink">
+						Aritmetica y Algebra
 					</Link>
 				</li>
 				<li onClick={removeActive}>
-					<Link to="fisica" className="Navlink">
+					<Link to="/geometria-y-trigonometria" className="Navlink">
+						Geometría Plana y Trigonometria
+					</Link>
+				</li>
+				<li onClick={removeActive}>
+					<Link to="/geometria-analitica-y-calculo" className="Navlink">
+						Geometría Analítica y Calculo
+					</Link>
+				</li>
+				<li onClick={removeActive}>
+					<Link to="/fisica" className="Navlink">
 						Fisica
 					</Link>
 				</li>
