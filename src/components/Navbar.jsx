@@ -2,6 +2,19 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import logo from "../images/logo.svg"; // Tell webpack this JS file uses this image
 import { Link } from "gatsby";
+const links = [
+	{ url: "/diccionario", text: "Diccionario" },
+	{ url: "/aritmetica-y-algebra", text: "Aritmetica y Algebra" },
+	{
+		url: "/geometria-y-trigonometria",
+		text: "Geometría Plana y Trigonometria",
+	},
+	{
+		url: "/geometria-analitica-y-calculo",
+		text: "Geometría Analítica y Calculo",
+	},
+	{ url: "/fisica", text: "Fisica" },
+];
 
 function Navbar() {
 	// adding the states
@@ -23,7 +36,7 @@ function Navbar() {
 				<img src={logo} className="Navbar-logo" alt="" />
 			</Link>
 			<ul className={`NavMenu${isActive ? "-active" : ""}`}>
-				<li onClick={removeActive}>
+				{/* <li onClick={removeActive}>
 					<Link to="/diccionario" className="Navlink">
 						Diccionario
 					</Link>
@@ -47,9 +60,15 @@ function Navbar() {
 					<Link to="/fisica" className="Navlink">
 						Fisica
 					</Link>
-				</li>
+				</li> */}
+				{links.map((link) => (
+					<li key={link.url} onClick={removeActive}>
+						<Link className="Navlink" to={`${link.url}`}>
+							{link.text}
+						</Link>
+					</li>
+				))}
 			</ul>
-
 			<div
 				className={`hamburger${isActive ? "-active" : ""}`}
 				onClick={toggleActiveClass}
