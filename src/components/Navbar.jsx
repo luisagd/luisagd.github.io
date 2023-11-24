@@ -31,39 +31,14 @@ function Navbar() {
 	};
 
 	return (
-		<nav className="Navbar">
-			<Link to="/" className="Navbar-logo">
-				<img src={logo} className="Navbar-logo" alt="" />
+		<nav class="bg-slate-100 flex px-3 py-5 justify-between items-center gap-10 w-full top-0 sticky">
+			<Link to="/">
+				<img src={logo} class="h-12" alt="" />
 			</Link>
 			<ul className={`NavMenu${isActive ? "-active" : ""}`}>
-				{/* <li onClick={removeActive}>
-					<Link to="/diccionario" className="Navlink">
-						Diccionario
-					</Link>
-				</li>
-				<li onClick={removeActive}>
-					<Link to="/aritmetica-y-algebra" className="Navlink">
-						Aritmetica y Algebra
-					</Link>
-				</li>
-				<li onClick={removeActive}>
-					<Link to="/geometria-y-trigonometria" className="Navlink">
-						Geometría Plana y Trigonometria
-					</Link>
-				</li>
-				<li onClick={removeActive}>
-					<Link to="/geometria-analitica-y-calculo" className="Navlink">
-						Geometría Analítica y Calculo
-					</Link>
-				</li>
-				<li onClick={removeActive}>
-					<Link to="/fisica" className="Navlink">
-						Fisica
-					</Link>
-				</li> */}
 				{links.map((link) => (
 					<li key={link.url} onClick={removeActive}>
-						<Link className="Navlink" to={`${link.url}`}>
+						<Link class="p-4 text-black text-lg" to={`${link.url}`}>
 							{link.text}
 						</Link>
 					</li>
