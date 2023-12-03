@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import React from "react"
+import IntroLayout from "../components/Layout";
 const geometriaAnaliticaLinks = [
     { url: '/introduccion-a-la-geometria-analitica-plana', text: 'Introducción a la Geometría Analítica Plana' },
     { url: '/vectores-en-el-plano', text: 'Vectores en el plano' },
@@ -15,17 +16,7 @@ const geometriaAnaliticaLinks = [
 
 const AyCPage = () => {
     return (
-        <div>
-            <main className='Main'>
-                <Navbar />
-                <header className="Base-header">
-                    <p> Bienvenido a mi página</p>
-                </header>
-            </main>
-            <Footer />
-        </div>
-
-
+        <IntroLayout links={geometriaAnaliticaLinks} pageTitle="Geometría Analítica y Cálculo"></IntroLayout>
     )
 }
 export default AyCPage;

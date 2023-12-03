@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import { Link } from "gatsby";
 
-const Layout = ({ children, pageTitle, pageSubtitle, links }) => {
+const IntroLayout = ({ children, pageTitle, pageSubtitle, links }) => {
 	return (
 		<div className="min-h-screen flex bg-gray-800 text-white">
 			<div className="flex-grow">
@@ -38,4 +38,4 @@ const Layout = ({ children, pageTitle, pageSubtitle, links }) => {
 	);
 };
 
-export default Layout;
+export default IntroLayout;

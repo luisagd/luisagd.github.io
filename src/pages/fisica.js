@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import React from "react"
+import IntroLayout from "../components/Layout";
 const fisicaLinks = [
     { url: '/mediciones-tecnicas-y-vectores', text: 'Mediciones técnicas y vectores' },
     { url: '/movimiento-en-una-dimension', text: 'Movimiento en una dimensión' },
@@ -15,17 +16,7 @@ const fisicaLinks = [
 
 const FisicaPage = () => {
     return (
-        <div>
-            <main className='Main'>
-                <Navbar />
-                <header className="Base-header">
-                    <p> Bienvenido a mi página</p>
-                </header>
-            </main>
-            <Footer />
-        </div>
-
-
+        <IntroLayout links={fisicaLinks} pageTitle="Física"></IntroLayout>
     )
 }
 export default FisicaPage;

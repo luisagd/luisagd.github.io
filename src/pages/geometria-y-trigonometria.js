@@ -1,6 +1,7 @@
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import React from "react"
+import IntroLayout from "../components/Layout";
 const geometriaBasicaLinks = [
     { url: '/entes-geometricos-fundamentales', text: 'Entes geométricos fundamentales' },
     { url: '/poligonos-nociones-generales', text: 'Polígonos. Nociones generales' },
@@ -19,16 +20,7 @@ const geometriaBasicaLinks = [
 
 const GyTPage = () => {
     return (
-        <div>
-            <main className='Main'>
-                <Navbar />
-                <header className="Base-header">
-                    <p> Bienvenido a mi página</p>
-                </header>
-            </main>
-            <Footer />
-        </div>
-
+        <IntroLayout links={geometriaBasicaLinks} pageTitle="Geometria Plana y Trigonometria"></IntroLayout>
 
     )
 }
