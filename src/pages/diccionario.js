@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/base.css";
-import "../styles/diccionario.css"
+// import "../styles/base.css";
+// import "../styles/diccionario.css"
 import Fuse from 'fuse.js';
 import diacritics from 'diacritics'
 import { useLocation } from '@gatsbyjs/reach-router';
@@ -55,7 +55,6 @@ function SearchResults() {
         if (!word || typeof word !== 'string') return null;
         console.log("word:" + word);
 
-        // Simulate fetching data locally from the imported JSON file
         word = word.toLowerCase().replaceAll("'", "’");
         const result = fuse.search(word).slice(0, 5);
         // const result = dictionary.filter(item =>
@@ -74,24 +73,35 @@ function SearchResults() {
             fetchData(word);
         }
     }, []); // 👈️ empty dependencies array
-
     return (
-        <div className="SearchResults">
-            <form
-                onSubmit={(event) => {
-                    event.preventDefault();
-                    const query = event.target.elements.query.value;
-                    console.log("query: " + query);
-                    fetchData(query);
-                }}
-            >
-                <label htmlFor="query"></label>
-                <input type="search" id="query" />
-                <button>Buscar</button>
-            </form>
-            <ul>
+        <div className="SearchResults flex flex-col items-center ">
+            <div className='flex space-x-5'>
+                <form
+                    className="mb-5 w-52"
+                    onSubmit={(event) => {
+                        event.preventDefault();
+                        const query = document.getElementById('query').value;
+                        console.log("query: " + query);
+                        fetchData(query);
+                    }}
+                >
+                    <label className="block mb-1 font-bold" htmlFor="query"></label>
+                    <input className="w-full text-black p-1 mb-3 border border-r-4 border-slate-100" type="search" id="query" />
+                </form>
+                <button
+                    className="bg-blue-700 text-white px-1 py-2 h-10 cursor-pointer"
+                    onClick={() => {
+                        const query = document.getElementById('query').value;
+                        console.log("query: " + query);
+                        fetchData(query);
+                    }}
+                >
+                    Buscar
+                </button>
+            </div>
+            <ul className="list-none">
                 {posts.map((item) => (
-                    <li>{item.item.word}:{item.item.definition}</li>
+                    <li className="mb-2">{item.item.word}:{item.item.definition}</li>
                 ))}
             </ul>
         </div>
@@ -100,14 +110,14 @@ function SearchResults() {
 function Diccionario() {
     return (
         <div>
-            <main className="Main">
+            <main class="bg-gray-800 min-h-screen text-white text-center">
                 <title>Diccionario Guaraní-Español y Español-Guaraní</title>
                 <meta name='description' content='El mejor diccionario Guaraní-Español y Español-Guaraní.' />
                 <Navbar />
-                <header className="Base-header">
+                <header class=" my-10 flex flex-col items-center  h-10 text-center text-xl md:text-2xl lg:text-4xl">
                     <p>Diccionario Guaraní-Español - Español-Guaraní</p>
-                    <SearchResults />
                 </header>
+                <SearchResults />
             </main>
             <Footer />
         </div>
