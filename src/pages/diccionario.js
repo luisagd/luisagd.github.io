@@ -74,10 +74,10 @@ function SearchResults() {
         }
     }, []); // 👈️ empty dependencies array
     return (
-        <div className="SearchResults flex flex-col items-center ">
-            <div className='flex space-x-5'>
+        <div className="SearchResults flex flex-col ">
+            <div className='flex space-x-5 justify-center'>
                 <form
-                    className="mb-5 w-52"
+                    className="mb-5 w-1/3"
                     onSubmit={(event) => {
                         event.preventDefault();
                         const query = document.getElementById('query').value;

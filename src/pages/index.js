@@ -28,7 +28,7 @@ const IndexPage = () => {
   return (
     <div>
       <main class="bg-gray-800 min-h-screen text-white">
-        {/* <Navbar /> */}
+        <Navbar />
         <header class="items-center text-center text-4xl min-h-fit my-10">
           <h1> Bienvenido a mi página personal.</h1>
           <p class="my-3 text-2xl">Un testimonio de lo que puede hacer Javascript, React, Gatsby y Tailwind.</p>

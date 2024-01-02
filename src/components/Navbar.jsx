@@ -3,17 +3,7 @@ import "./Navbar.css";
 import logo from "../images/logo.svg"; // Tell webpack this JS file uses this image
 import { Link } from "gatsby";
 const links = [
-	{ url: "/diccionario", text: "Diccionario" },
-	// { url: "/aritmetica-y-algebra", text: "Aritmetica y Algebra" },
-	// {
-	// 	url: "/geometria-y-trigonometria",
-	// 	text: "Geometría Plana y Trigonometria",
-	// },
-	// {
-	// 	url: "/geometria-analitica-y-calculo",
-	// 	text: "Geometría Analítica y Calculo",
-	// },
-	// { url: "/fisica", text: "Fisica" },
+	// { url: "/diccionario", text: "Diccionario" },
 ];
 
 function Navbar() {
