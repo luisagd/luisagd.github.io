@@ -1,10 +1,10 @@
 //Confirmed. Deployment only works if using branches in config, and using actions by its own.
 // import * as React from "react"
 import React from "react";
-import "../styles/base.css";
+import "../../styles/base.css";
 import { Link, navigate } from "gatsby";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 
 function SearchBar() {
   return (
@@ -22,7 +22,7 @@ function SearchBar() {
           class="text-black h-12 w-1/2 text-base px-5"
           type="search"
           id="query"
-          placeholder="Buscar palabra en el diccionario"
+          placeholder="Search word in the dictionary"
         />
         <button class="h-12 w-32 text-base bg-blue-500 ml-1 box-border">
           Buscar

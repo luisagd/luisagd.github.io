@@ -6,8 +6,7 @@ module.exports = {
     siteUrl: `https://luisagd.com`,
   },
   plugins: [
-    'gatsby-plugin-postcss',
-    `gatsby-plugin-mdx`,
+    "gatsby-plugin-postcss",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -16,4 +15,4 @@ module.exports = {
       },
     },
   ],
-}
+};

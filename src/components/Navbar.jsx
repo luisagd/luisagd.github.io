@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
-import logo from "../images/logo.svg"; // Tell webpack this JS file uses this image
+import icon from "../images/luisagdlogo.svg";
+
 import { Link } from "gatsby";
 const links = [
   { url: "/diccionario", text: "Diccionario" },
@@ -24,7 +25,7 @@ function Navbar() {
   return (
     <nav class="bg-slate-100 flex px-3 py-5 justify-between items-center gap-10 w-full top-0 sticky">
       <Link to="/">
-        <img src={logo} class="h-12" alt="" />
+        <img src={icon} class="h-12" alt="" />
       </Link>
       <ul className={`NavMenu${isActive ? "-active" : ""}`}>
         {links.map((link) => (
