@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 // import "../styles/base.css";
 // import "../styles/diccionario.css"
 import "../styles/font.css";
-import diacritics from "diacritics";
 import { useLocation } from "@gatsbyjs/reach-router";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -10,7 +9,7 @@ import fuzzysort from "fuzzysort";
 import autoComplete from "@tarekraafat/autocomplete.js";
 import icon from "../images/luisagdlogo.svg";
 
-const dictionary = require("../json/diccionario2.json");
+const dictionary = require("../json/diccionario.json");
 
 export function Head() {
   return (
