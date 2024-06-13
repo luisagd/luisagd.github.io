@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Navbar.css";
 import icon from "../images/luisagdlogo.svg";
 
 import { Link } from "gatsby";
@@ -23,13 +22,13 @@ function Navbar() {
   };
 
   return (
-    <nav class="bg-slate-100 flex px-3 py-5 justify-between items-center gap-10 w-full top-0 sticky">
+    <nav class="bg-blue-600 flex px-3 py-2 justify-between items-center gap-10 w-full top-0 sticky">
       <Link to="/">
         <img src={icon} class="h-12" alt="" />
       </Link>
-      <ul className={`NavMenu${isActive ? "-active" : ""}`}>
+      <ul>
         {links.map((link) => (
-          <li key={link.url} onClick={removeActive}>
+          <li className="lg:inline" key={link.url} onClick={removeActive}>
             <Link
               class="p-4 text-black text-lg"
               to={`${link.url}`}
@@ -44,10 +43,7 @@ function Navbar() {
           </li>
         ))}
       </ul>
-      <div
-        className={`hamburger${isActive ? "-active" : ""}`}
-        onClick={toggleActiveClass}
-      >
+      <div className="" onClick={toggleActiveClass}>
         <span className="bar"></span>
         <span className="bar"></span>
         <span className="bar"></span>

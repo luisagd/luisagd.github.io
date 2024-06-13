@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 // import "../styles/base.css";
 // import "../styles/diccionario.css"
 import "../styles/font.css";
+import "../styles/autoComplete.css";
+
 import { useLocation } from "@gatsbyjs/reach-router";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
@@ -23,10 +25,7 @@ export function Head() {
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet"
       />
-      <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/css/autoComplete.min.css"
-      />
+
       <link rel="icon" type="image/x-icon" href={icon} />
     </>
   );
@@ -57,6 +56,9 @@ function SearchResults() {
       diacritics: true,
       selector: "#query",
       searchEngine: "strict",
+      wrapper: true,
+      submit: true,
+      events: { input: {} },
     });
     const queryParams = new URLSearchParams(location.search);
     const word = queryParams.get("q");
@@ -67,20 +69,19 @@ function SearchResults() {
   }, []); // 👈️ empty dependencies array
   return (
     <div className="SearchResults flex flex-col ">
-      <div className="flex space-x-5 justify-center">
+      <div className="flex space-x-5 justify-center items-center">
         <form
-          className="mb-5 w-2/3 lg:w-1/2"
+          className="w-2/3 lg:w-1/2"
           onSubmit={(event) => {
+            console.log("form event");
             event.preventDefault();
-            const query = document.getElementById("query").value;
-            console.log("query: " + query);
+            // const query = document.getElementById("query").value;
+            const query = event.currentTarget.elements.query.value;
+            console.log("custom query: " + query);
             fetchData(query);
           }}
         >
-          <label
-            className="block mb-1 font-bold"
-            htmlFor="autoComplete"
-          ></label>
+          <label className="block mb-1 font-bold" htmlFor="query"></label>
           <input
             className="w-full text-black p-1 mb-3 border border-r-4 border-black xl:h-12"
             type="search"
