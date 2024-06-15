@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import screenshot1 from "../images/luisagdscreenshot.png";
 
 function SkillsPage() {
-  var userLang = navigator.language;
+  //   var userLang = navigator.language;
   //   alert("The language is: " + userLang);
   return (
     <div>

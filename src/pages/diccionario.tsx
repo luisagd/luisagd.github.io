@@ -52,8 +52,9 @@ function SearchResults() {
   const [posts, setPosts] = useState([]);
   const [word, setWord] = useState();
 
-  let url = new URL(window.location.href);
-
+  if (typeof window !== `undefined`) {
+    var url = new URL(window.location.href);
+  }
   const fetchData = (word: string) => {
     word = word.toLowerCase().replaceAll("'", "’").replaceAll("´", "’");
     const result = fuzzysort.go(word, dictionary, { key: "word", limit: 5 });
