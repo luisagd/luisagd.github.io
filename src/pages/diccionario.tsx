@@ -69,7 +69,7 @@ function SearchResults() {
   useEffect(() => {
     // 👇️ only runs once
     autoCompleteJS = new autoComplete({
-      placeholder: "Buscar palabra...",
+      placeHolder: "Buscar palabra...",
       data: {
         src: dictionary,
         keys: ["word"],
@@ -164,7 +164,7 @@ function SearchResults() {
       </div>
 
       {posts[0] && posts[0]._score == 0 && word && (
-        <div className="px-10 lg:px-80 text-left">
+        <div className="px-10 lg:px-80uy text-left">
           <p className="text-3xl lg:text-7xl  font-montserrat">
             {word.obj.word}
           </p>

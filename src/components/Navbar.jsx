@@ -6,7 +6,8 @@ import burgericon from "../images/burger.svg";
 import { Link } from "gatsby";
 const links = [
   { url: "/diccionario", text: "Diccionario" },
-  { url: "/about", text: "Acerca" },
+  // { url: "/about", text: "Acerca" },
+  // { url: "/skills", text: "Skills y Proyectos" },
 ];
 
 function Navbar() {
@@ -46,13 +47,21 @@ function Navbar() {
             </li>
           ))}
         </ul>
-        <div className=" block cursor-pointer" onClick={toggleActiveClass}>
+
+        {/* <div className="flex invisible lg:visible">
+          <p className="px-2">🇺🇸</p>
+          <p className="px-2">🇵🇾</p>
+        </div> */}
+        <div
+          className="lg:invisible block cursor-pointer"
+          onClick={toggleActiveClass}
+        >
           {isActive && <img src={closeicon} className="h-6" />}
           {!isActive && <img src={burgericon} className="h-6" />}
         </div>
       </nav>
       {isActive && (
-        <nav className="right-0 top-0 bg-blue-600 w-60 absolute min-h-full z-50 pt-20">
+        <nav className=" right-0 top-0 bg-blue-600 w-60 absolute min-h-full z-50 pt-20">
           <div
             className=" cursor-pointer float-right"
             onClick={toggleActiveClass}
