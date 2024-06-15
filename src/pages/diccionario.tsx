@@ -11,7 +11,24 @@ import fuzzysort from "fuzzysort";
 import autoComplete from "@tarekraafat/autocomplete.js";
 import icon from "../images/luisagdlogo.svg";
 
+const diacritics = [
+  "’",
+  "ñ",
+  "ã",
+  "ẽ",
+  "ĩ",
+  "õ",
+  "ũ",
+  "á",
+  "é",
+  "í",
+  "ó",
+  "ú",
+  "ý",
+];
+
 const dictionary = require("../json/diccionario.json");
+var autoCompleteJS;
 
 export function Head() {
   return (
@@ -33,18 +50,25 @@ export function Head() {
 function SearchResults() {
   const location = useLocation();
   const [posts, setPosts] = useState([]);
+  const [word, setWord] = useState();
+
+  let url = new URL(window.location.href);
 
   const fetchData = (word: string) => {
     word = word.toLowerCase().replaceAll("'", "’").replaceAll("´", "’");
-    console.log("word:" + word);
     const result = fuzzysort.go(word, dictionary, { key: "word", limit: 5 });
-    console.log("data:", result);
+    result.map((item) => {
+      if (item._score == 0) {
+        setWord(item);
+        console.log("CHANGED WORD");
+      }
+    });
     setPosts(result);
   };
 
   useEffect(() => {
     // 👇️ only runs once
-    const autoCompleteJS = new autoComplete({
+    autoCompleteJS = new autoComplete({
       placeholder: "Buscar palabra...",
       data: {
         src: dictionary,
@@ -53,12 +77,31 @@ function SearchResults() {
       resultItem: {
         highlight: true,
       },
+      resultList: {
+        tabSelect: true,
+      },
       diacritics: true,
       selector: "#query",
       searchEngine: "strict",
       wrapper: true,
       submit: true,
-      events: { input: {} },
+      events: {
+        list: {},
+      },
+    });
+    autoCompleteJS.input.addEventListener("selection", function (event) {
+      const feedback = event.detail;
+      autoCompleteJS.input.blur();
+      // Prepare User's Selected Value
+      const selection = feedback.selection.value[feedback.selection.key];
+      // Render selected choice to selection div
+      document.getElementById("query").innerHTML = selection;
+      // Replace Input value with the selected value
+      autoCompleteJS.input.value = selection;
+      const query = document.getElementById("query").value;
+      console.log("query: " + query);
+      fetchData(query); // Console log autoComplete data feedback
+      console.log("fed" + feedback);
     });
     const queryParams = new URLSearchParams(location.search);
     const word = queryParams.get("q");
@@ -69,15 +112,30 @@ function SearchResults() {
   }, []); // 👈️ empty dependencies array
   return (
     <div className="SearchResults flex flex-col ">
+      <div className="">
+        {diacritics.map((char: string) => (
+          <button
+            className="border w-fit px-2 border-blue-500 text-blue-600 mx-1"
+            onClick={() => {
+              document.getElementById("query").value =
+                document.getElementById("query").value + char;
+              document.getElementById("query")?.focus();
+              autoCompleteJS.open();
+            }}
+          >
+            {char}
+          </button>
+        ))}
+      </div>
       <div className="flex space-x-5 justify-center items-center">
         <form
           className="w-2/3 lg:w-1/2"
           onSubmit={(event) => {
-            console.log("form event");
             event.preventDefault();
-            // const query = document.getElementById("query").value;
             const query = event.currentTarget.elements.query.value;
             console.log("custom query: " + query);
+            url.searchParams.set("q", query);
+            window.history.replaceState(null, null, url); // or pushState
             fetchData(query);
           }}
         >
@@ -87,10 +145,14 @@ function SearchResults() {
             type="search"
             dir="ltr"
             id="query"
+            spellCheck="false"
+            autoCorrect="off"
+            autoComplete="off"
+            autoCapitalize="off"
           />
         </form>
         <button
-          className="bg-blue-700 text-white px-1 py-2 h-10 cursor-pointer"
+          className="bg-blue-200 text-blue-600 font-bold px-1 py-2 cursor-pointer rounded-3xl border-blue-500 border h-12 w-24"
           onClick={() => {
             const query = document.getElementById("query").value;
             console.log("query: " + query);
@@ -100,13 +162,14 @@ function SearchResults() {
           Buscar
         </button>
       </div>
-      {posts[0] && posts[0]._score == 0 && (
-        <div className="px-80 text-left">
+
+      {posts[0] && posts[0]._score == 0 && word && (
+        <div className="px-10 lg:px-80 text-left">
           <p className="text-3xl lg:text-7xl  font-montserrat">
-            {posts[0].obj.word}
+            {word.obj.word}
           </p>
           <ol>
-            {posts[0].obj.meaning.map((meaning) => (
+            {word.obj.meaning.map((meaning) => (
               <li className="mb-2">
                 <p className="text-blue-600 text-xl lg:text-3xl">
                   {meaning.type}
@@ -115,21 +178,28 @@ function SearchResults() {
               </li>
             ))}
           </ol>
-
-          {/* <p className="text-blue-600 text-xl lg:text-3xl">
-            {posts[0].obj.meaning[0].type}
-          </p>
-          <p className="lg:text-xl">{posts[0].obj.meaning[0].translation}</p> */}
         </div>
       )}
-      <ul className="list-none">
-        {posts.map((item) => (
-          <li className="mb-2">
-            {item.obj.word} [{item.obj.meaning[0].type}]:{" "}
-            {item.obj.meaning[0].translation}
-          </li>
-        ))}
-      </ul>
+      {posts[0] && posts[0]._score != 0 && (
+        <div>
+          Palabra no encontrada. Quisás querrás haber escrito una de las
+          siguientes palabras:
+          <ul className="list-none items-start">
+            {posts.map((item) => (
+              <li className="mb-2 px-10 lg:px-80 text-left">
+                <p
+                  className="text-xl lg:text-3xl  font-montserrat cursor-pointer"
+                  onClick={() => {
+                    fetchData(item.obj.word);
+                  }}
+                >
+                  {item.obj.word}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

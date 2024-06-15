@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import icon from "../images/luisagdlogo.svg";
+import closeicon from "../images/close.svg";
+import burgericon from "../images/burger.svg";
 
 import { Link } from "gatsby";
 const links = [
@@ -22,33 +24,63 @@ function Navbar() {
   };
 
   return (
-    <nav class="bg-blue-600 flex px-3 py-2 justify-between items-center gap-10 w-full top-0 sticky">
-      <Link to="/">
-        <img src={icon} class="h-12" alt="" />
-      </Link>
-      <ul>
-        {links.map((link) => (
-          <li className="lg:inline" key={link.url} onClick={removeActive}>
-            <Link
-              class="p-4 text-black text-lg"
-              to={`${link.url}`}
-              activeStyle={{
-                color: "black",
-                "font-weight": "bold",
-                padding: "1rem",
-              }}
-            >
-              {link.text}
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <div className="" onClick={toggleActiveClass}>
-        <span className="bar"></span>
-        <span className="bar"></span>
-        <span className="bar"></span>
-      </div>
-    </nav>
+    <>
+      <nav class="bg-blue-600 flex px-3 py-2 justify-between items-center gap-10 w-full top-0 sticky z-40">
+        <Link to="/">
+          <img src={icon} class="h-12" alt="" />
+        </Link>
+        <ul className="invisible lg:visible">
+          {links.map((link) => (
+            <li className="lg:inline" key={link.url} onClick={removeActive}>
+              <Link
+                class="p-4 text-black text-lg active:bg-white"
+                to={`${link.url}`}
+                activeStyle={{
+                  color: "black",
+                  "font-weight": "bold",
+                  padding: "1rem",
+                }}
+              >
+                {link.text}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div className=" block cursor-pointer" onClick={toggleActiveClass}>
+          {isActive && <img src={closeicon} className="h-6" />}
+          {!isActive && <img src={burgericon} className="h-6" />}
+        </div>
+      </nav>
+      {isActive && (
+        <nav className="right-0 top-0 bg-blue-600 w-60 absolute min-h-full z-50 pt-20">
+          <div
+            className=" cursor-pointer float-right"
+            onClick={toggleActiveClass}
+          >
+            {isActive && <img src={closeicon} className="h-6" />}
+            {!isActive && <img src={burgericon} className="h-6" />}
+          </div>
+          <ul>
+            {links.map((link) => (
+              <li className="" key={link.url} onClick={removeActive}>
+                <Link
+                  class="p-4 text-black text-xl"
+                  to={`${link.url}`}
+                  activeStyle={{
+                    color: "black",
+                    "font-weight": "bold",
+                    padding: "1rem",
+                    "font-size": "1.25rem",
+                  }}
+                >
+                  {link.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </>
   );
 }
 
