@@ -33,8 +33,11 @@ var autoCompleteJS;
 export function Head() {
   return (
     <>
-      <title>Diccionario</title>
-      <meta name="description" content="" />
+      <title>Diccionario Guarani</title>
+      <meta
+        name="description"
+        content="El mejor diccionario online - traductor a guaraní y español."
+      />
       <html lang="es" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -113,21 +116,6 @@ function SearchResults() {
   }, []); // 👈️ empty dependencies array
   return (
     <div className="SearchResults flex flex-col ">
-      <div className="">
-        {diacritics.map((char: string) => (
-          <button
-            className="border w-fit px-2 border-blue-500 text-blue-600 mx-1"
-            onClick={() => {
-              document.getElementById("query").value =
-                document.getElementById("query").value + char;
-              document.getElementById("query")?.focus();
-              autoCompleteJS.open();
-            }}
-          >
-            {char}
-          </button>
-        ))}
-      </div>
       <div className="flex space-x-5 justify-center items-center">
         <form
           className="w-2/3 lg:w-1/2"
@@ -201,21 +189,31 @@ function SearchResults() {
           </ul>
         </div>
       )}
+      <div className="my-5">
+        {diacritics.map((char: string) => (
+          <button
+            className="border w-fit px-2 border-blue-500 text-blue-600 mx-1"
+            onClick={() => {
+              document.getElementById("query").value =
+                document.getElementById("query").value + char;
+              document.getElementById("query")?.focus();
+              autoCompleteJS.open();
+            }}
+          >
+            {char}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
 function Diccionario() {
   return (
     <div>
-      <main class=" min-h-screen text-center">
-        <title>Diccionario Guaraní-Español y Español-Guaraní</title>
-        <meta
-          name="description"
-          content="El mejor diccionario Guaraní-Español y Español-Guaraní."
-        />
+      <main className=" min-h-screen text-center">
         <Navbar />
-        <header class=" my-10 flex flex-col items-center  h-10 text-center text-xl md:text-2xl lg:text-4xl">
-          <p>Diccionario Guaraní-Español - Español-Guaraní</p>
+        <header className=" my-10 flex flex-col items-center  h-10 text-center text-xl md:text-2xl lg:text-4xl mt-72">
+          <p>Ñe’ẽrandu: Diccionario Guarani-Español</p>
         </header>
         <SearchResults />
       </main>

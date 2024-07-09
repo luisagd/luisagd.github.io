@@ -19,12 +19,12 @@ function SearchBar() {
       >
         <label htmlFor="query"> </label>
         <input
-          class="text-black h-12 w-1/2 text-base px-5"
+          class="text-black h-12 lg:h-14 md:w-2/3 lg:w-1/2 text-base px-5 border-blue-400 rounded-2xl border-2"
           type="search"
           id="query"
           placeholder="Buscar palabra en el diccionario"
         />
-        <button class="h-12 w-32 text-base bg-blue-500 ml-1 box-border">
+        <button class="bg-blue-200 text-blue-600 font-bold px-1 py-2 cursor-pointer rounded-2xl border-blue-500 border mx-2 h-12 lg:h-16 w-24">
           Buscar
         </button>
       </form>
@@ -44,11 +44,13 @@ export function Head() {
 const IndexPage = () => {
   return (
     <div>
-      <main class="bg-gray-800 min-h-screen text-white">
+      <main class="min-h-screen">
         <Navbar />
-        <header class="items-center text-center text-4xl min-h-fit my-10">
-          <h1> Bienvenido a mi página personal.</h1>
-          <p class="my-3 text-2xl">
+        <header class="items-center text-center min-h-fit my-10">
+          <h1 className="text-2xl lg:text-4xl">
+            Bienvenido a mi página personal.
+          </h1>
+          <p class="my-3 text-base lg:text-2xl">
             Un testimonio de lo que puede hacer Javascript, React, Gatsby y
             Tailwind.
           </p>
