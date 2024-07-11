@@ -6,7 +6,7 @@ import burgericon from "../images/burger.svg";
 import { Link } from "gatsby";
 const links = [
   { url: "/diccionario", text: "Diccionario" },
-  // { url: "/about", text: "Acerca" },
+  { url: "/about", text: "Acerca" },
   // { url: "/skills", text: "Skills y Proyectos" },
 ];
 

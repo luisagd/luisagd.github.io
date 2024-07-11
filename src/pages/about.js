@@ -20,12 +20,12 @@ export function Head() {
 function About() {
   return (
     <div>
-      <main class="min-h-screen">
+      <main className="min-h-screen">
         <Navbar />
-        <header class=" mt-5 px-20 lg:px-36 h-10 text-2xl md:text-3xl lg:text-4xl">
+        <header className=" mt-5 px-20 lg:px-36 h-10 text-2xl md:text-3xl lg:text-4xl">
           <p>Acerca del sitio</p>
         </header>
-        <p class="text-left px-10 lg:px-40 pt-5">
+        <p className="text-left px-10 lg:px-40 pt-5">
           Este es mi proyecto personal, a fin de experimentar con herramientas
           como ReactJS, Tailwind, Python y Javascript. El sitio está hosteado en
           Github Pages, de tal manera a asegurar una experiencia confiable y
