@@ -33,10 +33,10 @@ var autoCompleteJS;
 export function Head() {
   return (
     <>
-      <title>Diccionario Guarani</title>
+      <title>:Ñe’ẽrandu: Diccionario Guarani-Español</title>
       <meta
         name="description"
-        content="El mejor diccionario online - traductor a guaraní y español."
+        content="Ñe’ẽrandu: El mejor diccionario online - traductor a guaraní y español."
       />
       <html lang="es" />
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -115,7 +115,7 @@ function SearchResults() {
     }
   }, []); // 👈️ empty dependencies array
   return (
-    <div className="SearchResults flex flex-col ">
+    <div className="SearchResults flex flex-col lg:px-80">
       <div className="flex space-x-5 justify-center items-center">
         <form
           className="w-2/3 lg:w-1/2"
@@ -140,7 +140,7 @@ function SearchResults() {
             autoCapitalize="off"
           />
         </form>
-        <button
+        {/* <button
           className="bg-blue-200 text-blue-600 font-bold px-1 py-2 cursor-pointer rounded-3xl border-blue-500 border h-12 w-24"
           onClick={() => {
             const query = document.getElementById("query").value;
@@ -149,9 +149,23 @@ function SearchResults() {
           }}
         >
           Buscar
-        </button>
+        </button> */}
       </div>
-
+      <div className="my-5">
+        {diacritics.map((char: string) => (
+          <button
+            className="border w-fit px-2 border-blue-500 text-blue-600 mx-1"
+            onClick={() => {
+              document.getElementById("query").value =
+                document.getElementById("query").value + char;
+              document.getElementById("query")?.focus();
+              autoCompleteJS.open();
+            }}
+          >
+            {char}
+          </button>
+        ))}
+      </div>
       {posts[0] && posts[0]._score == 0 && word && (
         <div className="px-10 lg:px-80uy text-left">
           <p className="text-3xl lg:text-7xl  font-montserrat">
@@ -189,21 +203,6 @@ function SearchResults() {
           </ul>
         </div>
       )}
-      <div className="my-5">
-        {diacritics.map((char: string) => (
-          <button
-            className="border w-fit px-2 border-blue-500 text-blue-600 mx-1"
-            onClick={() => {
-              document.getElementById("query").value =
-                document.getElementById("query").value + char;
-              document.getElementById("query")?.focus();
-              autoCompleteJS.open();
-            }}
-          >
-            {char}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }
@@ -212,8 +211,8 @@ function Diccionario() {
     <div>
       <main className=" min-h-screen text-center">
         <Navbar />
-        <header className=" my-10 flex flex-col items-center  h-10 text-center text-xl md:text-2xl lg:text-4xl mt-72">
-          <p>Ñe’ẽrandu: Diccionario Guarani-Español</p>
+        <header className=" my-10 flex flex-col items-center text-center text-xl md:text-2xl lg:text-8xl lg:font-semibold lg:font-mono lg:mt-72">
+          <p className="">Ñe’ẽrandu</p>
         </header>
         <SearchResults />
       </main>

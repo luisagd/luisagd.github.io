@@ -5,6 +5,7 @@ import "../styles/base.css";
 import { Link, navigate } from "gatsby";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+import icon from "../images/luisagdlogo.svg";
 
 function SearchBar() {
   return (
@@ -34,10 +35,13 @@ function SearchBar() {
 export function Head() {
   return (
     <>
-      <title>Luisagd: Bienvenido a mi página personal.</title>
-      <meta name="description" content="Luisagd. M" />
+      <title>luisagd: Bienvenido a mi página personal.</title>
+      <meta
+        name="description"
+        content="Luisagd: mi página personal con proyectos open source."
+      />
       <html lang="es" />
-      {/* <link rel="icon" type="image/x-icon" href={icon} /> */}
+      <link rel="icon" type="image/x-icon" href={icon} />
     </>
   );
 }
