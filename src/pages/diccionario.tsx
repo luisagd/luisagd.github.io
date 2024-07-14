@@ -116,11 +116,27 @@ function SearchResults() {
   }, []); // 👈️ empty dependencies array
   return (
     <div className="SearchResults flex flex-col lg:px-80">
+      <div className="my-5 px-16">
+        {diacritics.map((char: string) => (
+          <button
+            className="border w-fit px-2 border-blue-500 text-blue-600 m-1 text-lg lg:text-2xl"
+            onClick={() => {
+              document.getElementById("query").value =
+                document.getElementById("query").value + char;
+              document.getElementById("query")?.focus();
+              autoCompleteJS.open();
+            }}
+          >
+            {char}
+          </button>
+        ))}
+      </div>
       <div className="flex space-x-5 justify-center items-center">
         <form
           className="w-2/3 lg:w-1/2"
           onSubmit={(event) => {
             event.preventDefault();
+            autoCompleteJS.close();
             const query = event.currentTarget.elements.query.value;
             console.log("custom query: " + query);
             url.searchParams.set("q", query);
@@ -150,21 +166,6 @@ function SearchResults() {
         >
           Buscar
         </button> */}
-      </div>
-      <div className="my-5">
-        {diacritics.map((char: string) => (
-          <button
-            className="border w-fit px-2 border-blue-500 text-blue-600 mx-1"
-            onClick={() => {
-              document.getElementById("query").value =
-                document.getElementById("query").value + char;
-              document.getElementById("query")?.focus();
-              autoCompleteJS.open();
-            }}
-          >
-            {char}
-          </button>
-        ))}
       </div>
       {posts[0] && posts[0]._score == 0 && word && (
         <div className="px-10 lg:px-80uy text-left">
@@ -211,7 +212,7 @@ function Diccionario() {
     <div>
       <main className=" min-h-screen text-center">
         <Navbar />
-        <header className=" my-10 flex flex-col items-center text-center text-xl md:text-2xl lg:text-8xl lg:font-semibold lg:font-mono lg:mt-72">
+        <header className=" mt-10 flex flex-col items-center text-center  text-5xl md:text-6xl lg:text-8xl lg:font-semibold lg:font-mono lg:mt-72">
           <p className="">Ñe’ẽrandu</p>
         </header>
         <SearchResults />

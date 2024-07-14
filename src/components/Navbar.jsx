@@ -7,6 +7,7 @@ import { Link } from "gatsby";
 const links = [
   { url: "/diccionario", text: "Diccionario" },
   { url: "/about", text: "Acerca" },
+  { url: "/kodi", text: "Kódi" },
   // { url: "/skills", text: "Skills y Proyectos" },
 ];
 
@@ -26,7 +27,7 @@ function Navbar() {
 
   return (
     <>
-      <nav class="bg-blue-600 flex px-3 py-2 justify-between items-center gap-10 w-full top-0 sticky z-40">
+      <nav className="bg-blue-600 flex px-3 lg:py-2 justify-between items-center gap-10 w-full top-0 sticky z-40">
         <Link to="/">
           <img src={icon} class="h-12" alt="" />
         </Link>
@@ -61,7 +62,7 @@ function Navbar() {
         </div>
       </nav>
       {isActive && (
-        <nav className=" right-0 top-0 bg-blue-600 w-60 absolute min-h-full z-50 pt-20">
+        <nav className=" ml-auto top-20 bg-blue-600 w-60 sticky min-h-full z-50 ">
           <div
             className=" cursor-pointer float-right"
             onClick={toggleActiveClass}
@@ -73,7 +74,7 @@ function Navbar() {
             {links.map((link) => (
               <li className="" key={link.url} onClick={removeActive}>
                 <Link
-                  class="p-4 text-black text-xl"
+                  className="p-4 text-black text-xl"
                   to={`${link.url}`}
                   activeStyle={{
                     color: "black",
