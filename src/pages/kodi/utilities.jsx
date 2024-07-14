@@ -8,7 +8,6 @@ import pip2 from "../../images/kodi/cmd2.png";
 import pip3 from "../../images/kodi/cmd3.png";
 
 import "highlight.js/styles/rainbow.css";
-import ReactEmbedGist from "react-embed-gist";
 
 export function Head() {
   return (

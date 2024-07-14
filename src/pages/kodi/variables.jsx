@@ -7,7 +7,16 @@ import icon from "../../images/luisagdlogo.svg";
 import { Link } from "gatsby";
 
 import "highlight.js/styles/rainbow.css";
-import ReactEmbedGist from "react-embed-gist";
+
+import loadable from "@loadable/component";
+const ReactEmbedGist = loadable(() => import("react-embed-gist"));
+function myGist() {
+  return (
+    <div>
+      <ReactEmbedGist gist="luisagd/6a18fea0bfcd7db9d493a43ff9d23ec7" />{" "}
+    </div>
+  );
+}
 
 export function Head() {
   return (
@@ -77,10 +86,7 @@ function kodi_variables() {
               </li>
             </ul>
           </p>
-          <ReactEmbedGist
-            gist="luisagd/6a18fea0bfcd7db9d493a43ff9d23ec7"
-            className="my-10"
-          />
+          <myGist />
 
           <div className="text-2xl md:text-3xl lg:text-3xl px-10 lg:w-[1000px] flex my-4 ">
             <Link
