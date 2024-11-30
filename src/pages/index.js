@@ -77,6 +77,24 @@ function SearchBar({ func }) {
 	);
 }
 const ClickableImage = () => {
+	document.addEventListener("mousemove", function (e) {
+		if (e.target instanceof HTMLImageElement) {
+			const rect = e.target.getBoundingClientRect();
+			// Calculate the click position relative to the image
+			const size_x = rect.right - rect.left;
+			const size_y = rect.bottom - rect.top;
+			console.assert(size_x == size_y, "WHAT!! The image is not a square anymore. Please fix this!");
+			let x = Math.round(((e.clientX - rect.left) * 512) / size_x);
+			let y = Math.round(((e.clientY - rect.top) * 512) / size_y);
+			console.log("x:" + x + " y:" + y);
+			//e.offsetX >= 295 && e.offsetX <= 440 && e.offsetY >= 380 && e.offsetY <= 450
+			if (x > 295 && x < 440 && y > 380 && y < 450) {
+				document.body.style.cursor = "pointer";
+			} else {
+				document.body.style.cursor = "";
+			}
+		}
+	});
 	// Example function to handle click events
 	const handleImageClick = (event) => {
 		// Get the bounding box of the image
@@ -84,7 +102,7 @@ const ClickableImage = () => {
 		// Calculate the click position relative to the image
 		const size_x = rect.right - rect.left;
 		const size_y = rect.bottom - rect.top;
-		console.assert(size_x == size_y, "WHAT!! The image is not a square anymore. Please fix this!");
+		console.assert(size_x === size_y, "WHAT!! The image is not a square anymore. Please fix this!");
 		let x = Math.round(((event.clientX - rect.left) * 512) / size_x);
 		let y = Math.round(((event.clientY - rect.top) * 512) / size_y);
 		console.log("x:" + x + " y:" + y);
