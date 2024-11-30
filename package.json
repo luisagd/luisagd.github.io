@@ -15,12 +15,12 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "@gatsbyjs/reach-router": "^2.0.1",
     "@loadable/component": "^5.16.4",
-    "@tarekraafat/autocomplete.js": "^10.2.7",
-    "fuzzysort": "^3.0.1",
     "gatsby": "^5.12.4",
-    "gatsby-source-filesystem": "^5.12.1",
+    "gatsby-plugin-image": "^3.13.1",
+    "gatsby-plugin-sharp": "^5.13.1",
+    "gatsby-source-filesystem": "^5.13.1",
+    "gatsby-transformer-sharp": "^5.13.1",
     "highlight.js": "^11.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
