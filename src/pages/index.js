@@ -221,7 +221,7 @@ const IndexPage = () => {
 							<p class="my-3">
 								I do. I conducted research at my HS, and it had to be related to the natural sciences, so I decided to
 								develop a bioplastic. Here is the abstract for the research (the rest of the document is in Spanish. If
-								interested, you can email me.).
+								interested, you can email me.)
 							</p>
 							<div className="[font-family:__Times_New_Roman,_Georgia]">
 								<h2 className="font-bold text-center">ABSTRACT</h2>
