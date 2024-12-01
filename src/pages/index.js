@@ -1,7 +1,7 @@
 //Confirmed. Deployment only works if using branches in config, and using actions by its own.
 // import * as React from "react"
 import React from "react";
-import "../styles/base.css";
+// import "../styles/base.css";
 import { Link, navigate } from "gatsby";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
