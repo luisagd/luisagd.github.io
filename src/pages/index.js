@@ -10,7 +10,7 @@ import nn from "../images/neuralnetwork.gif";
 import "../styles/font.css";
 import hwbomb from "../images/an_hwbomb.gif";
 import hwbomb2 from "../images/computer2.gif";
-import me from "../images/me.jpg";
+import me from "../images/dog.gif";
 import bark from "../sound/bark.mp3";
 import under_construction from "../images/under_construction.gif";
 
