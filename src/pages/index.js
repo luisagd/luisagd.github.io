@@ -1,5 +1,4 @@
 //Confirmed. Deployment only works if using branches in config, and using actions by its own.
-// import * as React from "react"
 import React from "react";
 // import "../styles/base.css";
 import { Link, navigate } from "gatsby";
@@ -35,17 +34,23 @@ function SearchBar({ func }) {
 	return (
 		<div className="SearchResults flex flex-col lg:px-8">
 			<div className="my-5 px-16">
-				{diacritics.map((char) => (
-					<button
-						className="border w-7 lg:w-10 py-1 border-blue-500 text-white bg-blue-600 m-1 text-lg lg:text-2xl rounded"
-						onClick={() => {
-							document.getElementById("query").value = document.getElementById("query").value + char;
-							document.getElementById("query")?.focus();
-						}}
-					>
-						{char}
-					</button>
-				))}
+				{diacritics.map(
+					(
+						char,
+						i //I like dangerous.
+					) => (
+						<button
+							className="border w-7 lg:w-10 py-1 border-blue-500 text-white bg-blue-600 m-1 text-lg lg:text-2xl rounded"
+							key={i}
+							onClick={() => {
+								document.getElementById("query").value = document.getElementById("query").value + char;
+								document.getElementById("query")?.focus();
+							}}
+						>
+							{char}
+						</button>
+					)
+				)}
 			</div>
 			<div className="flex space-x-5 justify-center items-center">
 				<form
@@ -78,7 +83,7 @@ function SearchBar({ func }) {
 }
 const ClickableImage = () => {
 	return (
-		<div className="invisible lg:visible ">
+		<div className="hidden lg:block">
 			<div className="relative">
 				<img src={me} alt="Clickable example" className="w-80" />
 				<div
@@ -116,41 +121,40 @@ const IndexPage = () => {
 `;
 	return (
 		<div className="bg-black ">
-			<dev className="flex">
-				<ClickableImage className="w-0 lg:w-80" />
-				<main class="min-h-screen text-white xl:py-10">
+			<div className="lg:flex ">
+				<ClickableImage className="w-0 lg:w-80 " />
+				<main className="min-h-screen text-white xl:py-10">
 					{/* <Navbar /> */}
 					<div className="lg:border-2 lg:max-w-[1200px] mx-auto">
-						<header class="items-center  min-h-fit">
+						<header className="items-center  min-h-fit">
 							<h1
 								className=" shadow-red-400 shadow-lg text-center text-green-600 font-bold text-xs lg:text-base"
 								title="Cool ASCII art"
 							>
 								<pre alt>{ascii}</pre>
 							</h1>
-							<p class="my-3 lg:px-9 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
+							<p className="my-3 lg:px-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
 								I'm a CS student at <span className="italic bg-red-600">[coming soon]</span> with several fun projects.
 								And yes, I love the 90's theme <span className="italic"> (but I can also do modern stuff!)</span>
 								<br />
-								<br />
-								<div className="flex items-center border p-0">
-									<p className="p-0 m-0 text-sm lg:text-base">
-										Technical jargon: Once I loved C++ and dealing with hardware. While you won't see many things here
-										written in a low-level language, I use it all the time in quick hacks for memory modification and
-										linux utils. Every tool has its place, so it doesn't make sense to do webdev with C++ (though I did
-										it once. I learned my lesson). But in the end, I've outgrown my love for tools. In the age of AI,
-										marrying to a specific way of doing things is obsolete.
-									</p>
-									<img src={hwbomb2} className="h-[100px] [image-rendering:_pixelated]" />
-								</div>
 							</p>
+							<div className="flex items-center border lg:mx-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
+								<p className="p-0 m-0 text-sm lg:text-base">
+									Technical jargon: Once I loved C++ and dealing with hardware. While you won't see many things here
+									written in a low-level language, I use it all the time in quick hacks for memory modification and
+									linux utils. Every tool has its place, so it doesn't make sense to do webdev with C++ (though I did it
+									once. I learned my lesson). But in the end, I've outgrown my love for tools. In the age of AI,
+									marrying to a specific way of doing things is obsolete.
+								</p>
+								<img src={hwbomb2} className="h-[100px] [image-rendering:_pixelated]" />
+							</div>
 						</header>
 						<div className=" my-3 lg:p-10">
 							<div className=" text-center">
 								<a href="https://ñeerandu.com/" className="text-3xl lg:text-4xl font-press-start">
 									Ñe'erandu
 								</a>
-								<p class="my-3 text-base lg:text-2xl">An online dictionary for Guarani - Spanish.</p>
+								<p className="my-3 text-base lg:text-2xl">An online dictionary for Guarani - Spanish.</p>
 								<SearchBar />
 							</div>
 							<div className="flex items-center border p-0">
@@ -167,12 +171,12 @@ const IndexPage = () => {
 						<div className="bg-slate-900 text-center my-3 lg:p-10">
 							<div>
 								<h1 className="text-3xl lg:text-4xl font-bold font-[]">Ñembohasa</h1>
-								<p class="my-3 text-base lg:text-2xl">
+								<p className="my-3 text-base lg:text-2xl">
 									An OpenNMT 3 translation model based on transformers for Guarani and Spanish
-									<div className="mx-auto text-xs">
-										<img src={nn} className="mx-auto " />A simplified animation of the transformer model.
-									</div>
 								</p>
+								<div className="mx-auto text-xs">
+									<img src={nn} className="mx-auto " />A simplified animation of the transformer model.
+								</div>
 							</div>
 							<div className="text-left  pl-6">
 								<p className="italic ">And the paper?</p> I will write and publish my results at{" "}
@@ -187,7 +191,7 @@ const IndexPage = () => {
 						<div className="bg-slate-900 my-3 p-4 lg:p-10">
 							<div>
 								<h1 className="text-3xl lg:text-4xl font-bold font-[]">Do you have something non-CS?</h1>
-								<p class="my-3">
+								<p className="my-3">
 									I do. I conducted research at my HS, and it had to be related to the natural sciences, so I decided to
 									develop a bioplastic. Here is the abstract for the research (the rest of the document is in Spanish.
 									If interested, you can email me.)
@@ -213,7 +217,7 @@ const IndexPage = () => {
 						<div className="bg-slate-900 my-3 p-4 lg:p-10 flex">
 							<div className="pr-5">
 								<h1 className="text-3xl lg:text-4xl font-bold font-[]">Found a bug?</h1>
-								<p class="my-3">
+								<p className="my-3">
 									As with{" "}
 									<a href="https://en.wikipedia.org/wiki/Ariane_flight_V88" className="underline text-blue-400">
 										every piece of software
@@ -228,7 +232,7 @@ const IndexPage = () => {
 						</div>
 					</div>
 				</main>
-			</dev>
+			</div>
 
 			<Footer />
 		</div>
