@@ -77,50 +77,19 @@ function SearchBar({ func }) {
 	);
 }
 const ClickableImage = () => {
-	if (typeof document !== `undefined`) {
-		document.addEventListener("mousemove", function (e) {
-			if (e.target instanceof HTMLImageElement) {
-				const rect = e.target.getBoundingClientRect();
-				// Calculate the click position relative to the image
-				const size_x = rect.right - rect.left;
-				const size_y = rect.bottom - rect.top;
-				console.assert(size_x == size_y, "WHAT!! The image is not a square anymore. Please fix this!");
-				let x = Math.round(((e.clientX - rect.left) * 512) / size_x);
-				let y = Math.round(((e.clientY - rect.top) * 512) / size_y);
-				console.log("x:" + x + " y:" + y);
-				//e.offsetX >= 295 && e.offsetX <= 440 && e.offsetY >= 380 && e.offsetY <= 450
-				if (x > 295 && x < 440 && y > 380 && y < 450) {
-					document.body.style.cursor = "pointer";
-				} else {
-					document.body.style.cursor = "";
-				}
-			}
-		});
-	}
-	const handleImageClick = (event) => {
-		// Get the bounding box of the image
-		const rect = event.target.getBoundingClientRect();
-		// Calculate the click position relative to the image
-		const size_x = rect.right - rect.left;
-		const size_y = rect.bottom - rect.top;
-		console.assert(size_x === size_y, "WHAT!! The image is not a square anymore. Please fix this!");
-		let x = Math.round(((event.clientX - rect.left) * 512) / size_x);
-		let y = Math.round(((event.clientY - rect.top) * 512) / size_y);
-		console.log("x:" + x + " y:" + y);
-		// Call different functions based on the clicked position
-		if (x > 295 && x < 440 && y > 380 && y < 450) {
-			var audio = new Audio(bark);
-			audio.play();
-			// alert("GRRRRRRRRRRRR!");
-		} else {
-			// alert("Clicked somewhere else!");
-		}
-	};
-
 	return (
-		<div className="fixed bottom-10 invisible lg:visible">
-			<img src={me} alt="Clickable example" className="w-80" onClick={handleImageClick} />
-			<p className="text-white"> ps: don't touch my dog or its bone. he bites</p>
+		<div className="invisible lg:visible ">
+			<div className="relative">
+				<img src={me} alt="Clickable example" className="w-80" />
+				<div
+					className="bg-red-500 w-[30%] h-[12.5%] absolute top-[75%] left-[55%] cursor-pointer opacity-0"
+					onClick={() => {
+						var audio = new Audio(bark);
+						audio.play();
+					}}
+				/>
+			</div>
+			<p className="text-white"> ps: don't touch my dog or his bone. he bites</p>
 		</div>
 	);
 };
@@ -146,9 +115,8 @@ const IndexPage = () => {
          |___/                |__/                   
 `;
 	return (
-		<div className="bg-black">
-			{/* <img src={me} className="fixed w-0 lg:w-80 top-10 " /> */}
-			<ClickableImage className="fixed w-0 lg:w-80 top-10 " />
+		<div className="bg-black flex">
+			<ClickableImage className="w-0 lg:w-80" />
 			<main class="min-h-screen text-white xl:py-10">
 				{/* <Navbar /> */}
 				<div className="lg:border-2 lg:max-w-[1200px] mx-auto">
@@ -159,7 +127,7 @@ const IndexPage = () => {
 						>
 							<pre alt>{ascii}</pre>
 						</h1>
-						<p class="my-3 lg:px-9 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] [font-smoothing:_none] [text-rendering:_optimizeSpeed] [-webkit-font-smoothing:_none]">
+						<p class="my-3 lg:px-9 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
 							I'm a CS student at <span className="italic bg-red-600">[coming soon]</span> with several fun projects.
 							And yes, I love the 90's theme <span className="italic"> (but I can also do modern stuff!)</span>
 							<br />
