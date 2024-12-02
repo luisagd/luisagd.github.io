@@ -127,9 +127,9 @@ const IndexPage = () => {
 				<main className="min-h-screen text-white xl:py-10">
 					{/* <Navbar /> */}
 					<div className="lg:border-2 lg:max-w-[1200px] mx-auto">
-						<header className="items-center  min-h-fit">
+						<header className="items-center min-h-fit">
 							<h1
-								className=" shadow-red-400 shadow-lg text-center text-green-600 font-bold text-xs lg:text-base"
+								className=" shadow-red-400 shadow-lg text-green-600 font-bold text-[2.8vw] lg:text-center lg:text-base"
 								title="Cool ASCII art"
 							>
 								<pre alt>{ascii}</pre>
