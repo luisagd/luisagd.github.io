@@ -12,6 +12,7 @@ import hwbomb2 from "../images/computer2.gif";
 import me from "../images/dog.gif";
 import bark from "../sound/bark.mp3";
 import under_construction from "../images/under_construction.gif";
+import fstabgen from "../images/fstabgen.gif";
 
 import wordlist_gn from "../json/wordlist_gn.json";
 import wordlist_es from "../json/wordlist_es.json";
@@ -157,7 +158,7 @@ const IndexPage = () => {
 								<p className="my-3 text-base lg:text-2xl">An online dictionary for Guarani - Spanish.</p>
 								<SearchBar />
 							</div>
-							<div className="flex items-center border p-0">
+							<div className="flex items-center border p-0 my-10">
 								<p className="text-sm lg:text-base [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
 									Technical jargon: I OCR'd, sanitized and parsed the physical dictionary with a Python script. I've
 									done the heavy lifting, so (hopefully) no one else has to! I used the Bible for my corpus, but I also
@@ -178,7 +179,7 @@ const IndexPage = () => {
 									<img src={nn} className="mx-auto " />A simplified animation of the transformer model.
 								</div>
 							</div>
-							<div className="text-left  pl-6">
+							<div className="text-left pl-6">
 								<p className="italic ">And the paper?</p> I will write and publish my results at{" "}
 								<span className="italic bg-red-600">[coming soon]</span> once I get a chance to train further my model
 								with a better machine. (And also because local universities here don't let you publish as an
@@ -188,14 +189,34 @@ const IndexPage = () => {
 								</a>
 							</div>
 						</div>
+						<div className=" my-3 lg:p-10">
+							<div className="mx-auto font-chicago aliased ">
+								<h1 className="text-3xl lg:text-4xl text-center">fstabgen</h1>
+								<h2 className="text-center my-3 text-sm lg:text-xl">
+									Simple program that adds fstab entries. <br />
+								</h2>
+								<p className=" text-sm lg:text-xl mx-auto pl-6">
+									Did you get a <span className="text-red-700 italic">"Failed to mount /etc/fstab"</span> error? This is
+									a linux utility that lets you comfortably modify your fstab without having to worry about format or
+									mistakes. Plus, it's written in <span className="text-orange-700">Rust.</span>
+								</p>
+							</div>
+							<div className="mx-auto text-xs">
+								<img src={fstabgen} className="mx-auto" />
+								{/* fstab file made easy. */}
+							</div>
+						</div>
 						<div className="bg-slate-900 my-3 p-4 lg:p-10">
 							<div>
-								<h1 className="text-3xl lg:text-4xl font-bold font-[]">Do you have something non-CS?</h1>
-								<p className="my-3">
-									I do. I conducted research at my HS, and it had to be related to the natural sciences, so I decided to
-									develop a bioplastic. Here is the abstract for the research (the rest of the document is in Spanish.
-									If interested, you can email me.)
-								</p>
+								<div className="[font-family:__Times_New_Roman,_Georgia]">
+									<h1 className="text-3xl lg:text-4xl font-bold ">Do you have something non-CS?</h1>
+									<p className="my-3 lg:text-xl">
+										I do. I conducted research at my HS, and it had to be related to the natural sciences, so I decided
+										to develop a bioplastic. Here is the abstract for the research (the rest of the document is in
+										Spanish. If interested, you can email me.)
+									</p>
+								</div>
+
 								<div className="[font-family:__Times_New_Roman,_Georgia]">
 									<h2 className="font-bold text-center">ABSTRACT</h2>
 									<p className="text-justify lg:w-96 mx-auto text-sm lg:text-base">
@@ -215,8 +236,8 @@ const IndexPage = () => {
 							</div>
 						</div>
 						<div className="bg-slate-900 my-3 p-4 lg:p-10 flex">
-							<div className="pr-5">
-								<h1 className="text-3xl lg:text-4xl font-bold font-[]">Found a bug?</h1>
+							<div className="pr-5 font-montserrat">
+								<h1 className="text-3xl lg:text-4xl font-bold ">Found a bug?</h1>
 								<p className="my-3">
 									As with{" "}
 									<a href="https://en.wikipedia.org/wiki/Ariane_flight_V88" className="underline text-blue-400">
