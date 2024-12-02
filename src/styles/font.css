@@ -6,7 +6,10 @@
 	font-family: "PressStart2P";
 	src: url("../fonts/PressStart2P-Regular.ttf") format("truetype");
 }
-
+@font-face {
+	font-family: "Chicago";
+	src: url("../fonts/Chicago.ttf") format("truetype");
+}
 .font-montserrat {
 	font-family: "Montserrat", sans-serif;
 	font-optical-sizing: auto;
@@ -19,6 +22,11 @@
 }
 .font-press-start {
 	font-family: "PressStart2P", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
+.font-chicago {
+	font-family: "Chicago", sans-serif;
 	font-optical-sizing: auto;
 	font-style: normal;
 }
