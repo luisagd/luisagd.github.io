@@ -135,7 +135,7 @@ const IndexPage = () => {
 								<pre alt>{ascii}</pre>
 							</h1>
 							<p className="my-3 lg:px-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
-								I'm a CS student at <span className="italic bg-red-600">[coming soon]</span> with several fun projects.
+								I'm a CS student at <span className="italic bg-green-600">Dartmouth</span> with several fun projects.
 								And yes, I love the 90's theme <span className="italic"> (but I can also do modern stuff!)</span>
 								<br />
 							</p>
