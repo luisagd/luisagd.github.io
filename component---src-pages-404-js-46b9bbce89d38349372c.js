@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkluisagd=self.webpackChunkluisagd||[]).push([[883],{429:function(e,n,t){t.r(n),t.d(n,{Head:function(){return c}});var a=t(7294),l=t(4160);n.default=()=>a.createElement("main",{className:"px-24 text-cyan-950"},a.createElement("p",{className:"mb-12"},"Esta página no se encuentra disponible.",a.createElement("br",null),null,a.createElement("br",null),a.createElement(l.rU,{to:"/"},"Volver a inicio"),"."));const c=()=>a.createElement("title",null,"No encontrado")}}]);
+//# sourceMappingURL=component---src-pages-404-js-46b9bbce89d38349372c.js.map
