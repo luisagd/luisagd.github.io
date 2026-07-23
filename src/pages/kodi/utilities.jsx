@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import KodiTitle from "../../components/KodiTitle";
@@ -9,24 +10,25 @@ import pip3 from "../../images/kodi/cmd3.png";
 
 import "highlight.js/styles/rainbow.css";
 
-export function Head() {
+function PageHead() {
   return (
-    <>
+    <Helmet htmlAttributes={{ lang: "es" }}>
       <title>Kódi</title>
       <meta
         name="description"
         content="Kódi: una guía de programación en python en el lenguaje guarani."
       />
 
-      <html lang="es" />
       <link rel="icon" type="image/x-icon" href={icon} />
-    </>
+    </Helmet>
   );
 }
 
 function kodi_utilities() {
   return (
-    <div>
+    <>
+      <PageHead />
+      <div>
       <main className="min-h-screen ">
         <Navbar />
         <div className="px-10 lg:w-[1060px] m-auto">
@@ -51,7 +53,8 @@ function kodi_utilities() {
         </div>
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 

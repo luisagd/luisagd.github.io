@@ -1,31 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import KodiTitle from "../../components/KodiTitle";
 
 import icon from "../../images/luisagdlogo.svg";
-import { Link } from "gatsby";
 import instalation_1 from "../../images/kodi/instalation1.png";
 import instalation_2 from "../../images/kodi/instalation2.png";
 import instalation_3 from "../../images/kodi/instalation3.png";
 
-export function Head() {
+function PageHead() {
   return (
-    <>
+    <Helmet htmlAttributes={{ lang: "es" }}>
       <title>Kódi</title>
       <meta
         name="description"
         content="Kódi: Guía de instalación de python en guaraní."
       />
-      <html lang="es" />
       <link rel="icon" type="image/x-icon" href={icon} />
-    </>
+    </Helmet>
   );
 }
 
 function kodi_instalation() {
   return (
-    <div>
+    <>
+      <PageHead />
+      <div>
       <main className="min-h-screen ">
         <Navbar />
         <div className="px-10 lg:w-[1060px] m-auto">
@@ -50,17 +51,18 @@ function kodi_instalation() {
             <img src={instalation_3} className="mt-5 lg:mt-10 mx-auto" />
           </p>
           <div className="font-semibold lg:font-normal md:text-3xl lg:text-3xl lg:px-10 lg:w-[1000px] flex my-4 ">
-            <Link
-              to="../variables"
+            <a
+              href="/kodi/variables"
               className=" ml-auto py-4 lg:p-4 border border-blue-400 "
             >
               2-Python Variables ha Datokuéra Oĩva ➡️
-            </Link>
+            </a>
           </div>
         </div>
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 

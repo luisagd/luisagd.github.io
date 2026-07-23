@@ -3,7 +3,6 @@ import icon from "../images/luisagdlogo.svg";
 import closeicon from "../images/close.svg";
 import burgericon from "../images/burger.svg";
 
-import { Link } from "gatsby";
 const links = [
   { url: "/diccionario", text: "Diccionario" },
   { url: "/about", text: "Acerca" },
@@ -28,23 +27,15 @@ function Navbar() {
   return (
     <>
       <nav className="bg-blue-600 flex px-3 lg:py-2 justify-between items-center gap-10 w-full top-0 sticky z-40">
-        <Link to="/">
+        <a href="/">
           <img src={icon} class="h-12" alt="" />
-        </Link>
+        </a>
         <ul className="invisible lg:visible">
           {links.map((link) => (
             <li className="lg:inline" key={link.url} onClick={removeActive}>
-              <Link
-                class="p-4 text-black text-lg active:bg-white"
-                to={`${link.url}`}
-                activeStyle={{
-                  color: "black",
-                  "font-weight": "bold",
-                  padding: "1rem",
-                }}
-              >
+              <a className="p-4 text-black text-lg active:bg-white" href={link.url}>
                 {link.text}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
@@ -73,18 +64,9 @@ function Navbar() {
           <ul>
             {links.map((link) => (
               <li className="" key={link.url} onClick={removeActive}>
-                <Link
-                  className="p-4 text-black text-xl"
-                  to={`${link.url}`}
-                  activeStyle={{
-                    color: "black",
-                    "font-weight": "bold",
-                    padding: "1rem",
-                    "font-size": "1.25rem",
-                  }}
-                >
+                <a className="p-4 text-black text-xl" href={link.url}>
                   {link.text}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

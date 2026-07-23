@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Footer from "../../components/Footer";
 import Navbar from "../../components/Navbar";
 import KodiTitle from "../../components/KodiTitle";
 import icon from "../../images/luisagdlogo.svg";
-import { Link } from "gatsby";
 
 import "highlight.js/styles/rainbow.css";
 
@@ -16,24 +16,25 @@ function myGist() {
     </div>
   );
 }
-export function Head() {
+function PageHead() {
   return (
-    <>
+    <Helmet htmlAttributes={{ lang: "es" }}>
       <title>Kódi</title>
       <meta
         name="description"
         content="Kódi: una guía de programación en python en el lenguaje guarani."
       />
 
-      <html lang="es" />
       <link rel="icon" type="image/x-icon" href={icon} />
-    </>
+    </Helmet>
   );
 }
 
 function kodi_functions() {
   return (
-    <div>
+    <>
+      <PageHead />
+      <div>
       <main className="min-h-screen ">
         <Navbar />
         <div className="px-10 lg:w-[1060px] m-auto">
@@ -53,17 +54,18 @@ function kodi_functions() {
 
           <myGist />
           <div className="text-2xl md:text-3xl lg:text-3xl px-10 lg:w-[1000px] flex my-4 ">
-            <Link
-              to="../utilities"
+            <a
+              href="/kodi/utilities"
               className=" ml-auto p-4 border border-blue-400 "
             >
               6-Pip jeipurúvo ha script jejapo➡️
-            </Link>
+            </a>
           </div>
         </div>
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }
 

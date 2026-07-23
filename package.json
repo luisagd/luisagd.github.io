@@ -1,36 +1,43 @@
 {
   "name": "luisagd",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "luisagd",
   "author": "luisagd",
   "keywords": [
-    "gatsby"
+    "vite"
   ],
   "scripts": {
-    "develop": "gatsby develop -H 0.0.0.0 -p 443 -S",
-    "start": "gatsby develop -H 0.0.0.0 -p 443 -S",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "dev": "vite --host 0.0.0.0 --port 443",
+    "develop": "vite --host 0.0.0.0 --port 443",
+    "start": "vite --host 0.0.0.0 --port 443",
+    "build": "vite build && node scripts/build-routes.mjs",
+    "serve": "vite preview",
+    "clean": "node -e \"require('fs').rmSync('dist', { recursive: true, force: true })\""
   },
   "dependencies": {
     "@loadable/component": "^5.16.4",
-    "gatsby": "^5.12.4",
-    "gatsby-plugin-image": "^3.13.1",
-    "gatsby-plugin-sharp": "^5.13.1",
-    "gatsby-source-filesystem": "^5.13.1",
-    "gatsby-transformer-sharp": "^5.13.1",
     "highlight.js": "^11.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-embed-gist": "^1.0.22"
+    "react-embed-gist": "^1.0.22",
+    "react-helmet-async": "^3.0.0",
+    "react-router-dom": "^7.18.1",
+    "vite-plugin-pages": "^0.33.3"
   },
   "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^2.0.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "autoprefixer": "^10.4.16",
-    "gatsby-plugin-postcss": "^6.12.0",
     "gh-pages": "^6.1.1",
     "postcss": "^8.4.31",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.3.5",
+    "vite": "^7.0.0"
+  },
+  "allowScripts": {
+    "sharp@0.32.6": true,
+    "lmdb@2.5.3": true,
+    "lmdb@2.5.2": true,
+    "msgpackr-extract@3.0.2": true
   }
 }

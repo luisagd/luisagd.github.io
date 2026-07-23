@@ -1,7 +1,7 @@
 //Confirmed. Deployment only works if using branches in config, and using actions by its own.
 import React from "react";
+import { Helmet } from "react-helmet-async";
 // import "../styles/base.css";
-import { Link, navigate } from "gatsby";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import icon from "../images/luisagdlogo.svg";
@@ -99,14 +99,13 @@ const ClickableImage = () => {
 		</div>
 	);
 };
-export function Head() {
+function PageHead() {
 	return (
-		<>
+		<Helmet htmlAttributes={{ lang: "es" }}>
 			<title>luisagd</title>
 			<meta name="description" content="Luisagd: my personal website" />
-			<html lang="es" />
 			<link rel="icon" type="image/x-icon" href={icon} />
-		</>
+		</Helmet>
 	);
 }
 const IndexPage = () => {
@@ -122,6 +121,7 @@ const IndexPage = () => {
 `;
 	return (
 		<div className="bg-black ">
+			<PageHead />
 			<div className="lg:flex ">
 				<ClickableImage className="w-0 lg:w-80 " />
 				<main className="min-h-screen text-white xl:py-10">
@@ -135,10 +135,11 @@ const IndexPage = () => {
 								<pre alt>{ascii}</pre>
 							</h1>
 							<p className="my-3 lg:px-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
-								I'm a CS student at <span className="italic bg-green-600">Dartmouth</span> with several fun projects.
+								I'm a CS + EE student at <span className="italic bg-green-600">Dartmouth</span> with several fun projects.
 								And yes, I love the 90's theme <span className="italic"> (but I can also do modern stuff!)</span>
 								<br />
 							</p>
+							<a href="/monitor-fix"></a>
 							<div className="flex items-center border lg:mx-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
 								<p className="p-0 m-0 text-sm lg:text-base">
 									Technical jargon: Once I loved C++ and dealing with hardware. While you won't see many things here

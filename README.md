@@ -1,10 +1,11 @@
-My personal website. Enjoy!
+My personal website, built with Vite and React. Enjoy!
 
 # Building
 
 ```
 git clone https://github.com/luisagd/luisagd.github.io.git
 cd luisagd.github.io
+npm install
 npm run build
 ```
 

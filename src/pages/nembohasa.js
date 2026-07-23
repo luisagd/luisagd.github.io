@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 
 export default function nembohasa() {
 	let ascii = String.raw`#!/usr/bin/env python3
@@ -456,5 +457,13 @@ if __name__ == "__main__":
     # model_specific('es', 'gn')
     model_specific('gn', 'es')
 `;
-	return <pre>{ascii}</pre>;
+	return (
+		<>
+			<Helmet>
+				<title>Ñembohasa | luisagd</title>
+				<meta name="description" content="An OpenNMT translation model for Guarani and Spanish." />
+			</Helmet>
+			<pre>{ascii}</pre>
+		</>
+	);
 }
