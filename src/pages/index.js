@@ -138,8 +138,11 @@ const IndexPage = () => {
 								I'm a CS + EE student at <span className="italic bg-green-600">Dartmouth</span> with several fun projects.
 								And yes, I love the 90's theme <span className="italic"> (but I can also do modern stuff!)</span>
 								<br />
+								My EE-ish stuff:<br/>
+								<ul>
+									<li><a href="/monitor-fix" className="lg:mx-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(0_0_255_/_60%)] aliased">How I fixed a bricked monitor </a></li>
+								</ul>
 							</p>
-							<a href="/monitor-fix"></a>
 							<div className="flex items-center border lg:mx-10 [font-family:_MS_PGothic,_Georgia] [text-shadow:_1px_2px_0px_rgb(255_0_0_/_60%)] aliased">
 								<p className="p-0 m-0 text-sm lg:text-base">
 									Technical jargon: Once I loved C++ and dealing with hardware. While you won't see many things here

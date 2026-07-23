@@ -1,0 +1,68 @@
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import general from "../images/monitor/general-disassembled.webp";
+import CH341A from "../images/monitor/CH341A.jpg";
+import g25 from "../images/monitor/g25.webp";
+import gigabyte from "../images/monitor/gigabyte_site.avif";
+
+
+
+
+const MonitorFix = () =>{
+
+
+
+return(
+<div className="bg-black text-white min-h-screen ">
+    <Helmet>
+        <title>Fixing bricked firmware | luisagd</title>
+        <meta name="description" content="Repairing bricked firmware in electronics." />
+    </Helmet>
+    <div className="lg:max-w-[1200px] mx-auto">
+            <h1 className="text-4xl py-10">Fixing a bricked Gigabyte G24F2 after a failed BIOS update</h1>
+    <img src={general} className="mx-auto pb-8" />
+    <div className="space-y-8 leading-8 ">
+        <p> Years ago I bought a GIGABYTE G24F2, a 1080p monitor which served me well for over a year. For some unknown reason, I decided to tempt fate and install the app. I did so, but to continue using the app I had to update the firmware.
+            Why not? I thought to myself. At about 50%, my monitor went pitch black only to never come back. No matter how much I pressed the button, it would not work. I tried all sort of online tricks for dead monitors. Nothing worked. <br/>
+        </p>
+        <p> So, I'd put the monitor back into its box hoping that some day I would be able to fix it. 
+        </p>
+        <p>
+            And, here we are: my first year of college taught me a lot.  So, here is what I did to get the monitor back to a working state.
+            
+            First of all, I disassembled the monitor. It has two main boards, one of which is just for power purposes. Clearly, the chip that has the firmware that got bricked lies on the board to the right.
+            In all likelihood, it was one of the SOIC8 (Small Outline Integrated Circuit, 8 pins)  chips. In order to interact with the chip, I used a <a href="https://github.com/tigard-tools/tigard">Tigard</a> and a CH341A kit. While I did not use the included 
+            USB BIOS programmer, the clip is certainly helpful.
+            <img src={CH341A} className="w-96 mx-auto" />
+            My first candidate was the Chip that started with 25XX. This means that it's SPI NOR, i.e., our target firmware. The other chips where either dedicated to power
+            or read-only chips. Specifically, it was a GD25Q40: a GigaDevice 4Mbit (512 KB) SPI NOR.
+
+            I then checked GIGABYTE's website and they do indeed offer a .bin for the first ever version of the BIOS, but later versions are instead bundled in a .exe. 
+            <img src={gigabyte} className="w-[800px] mx-auto" />
+            Bingo! It seems that the size of the provided bin and our chip match. But it turns out, that the downloaded file is a .zip, and the uncompressed .bin is exactly 1024KB. 
+            Perhaps there was padding on the .bin, I thought. Or maybe is a dual-bank image, meaning that the 512 KB payload is repeated twice. 
+            I ran xxd -s 0      -l 48 "$f" and xxd -s 524288 -l 48 "$f". I confirmed that they were, in fact, different halves. 
+
+            Yet, there was still hope: under the shield. There it lay: a GD25Q16. Bigger than our target size, but in theory, we could just pad it. I plugged the CH341A to my Tigard in SPI mode, then I connected with flashrom:
+        </p>
+        <p className="text-green-600 text-center">    
+            sudo flashrom -p ft2232_spi:type=2232H,port=B,divisor=16 -r fw1.bin
+        </p>
+
+        <p>
+            Inside it, strings returned: SRC\Matrix.c Version 3.0.00 Mar 02 2022#. It definitely is my BIOS. However, it's 2MB, while our .bin is 1 MB. Something is not right. So, I decided
+            to download the .exe file. After running binwalk, I found out that, as expected it is a Windows PE binary, machine type: Intel x86, but also, that it has 7-zip archive data, version 0.3, total size: 2596499 bytes.
+            By running  7z l "G24F 2_F4.exe", I got the actual BIOS file, plus some additional notes. Since the chip died while I was performing the update, some percentage of the .bin must match with what is written to the chip.
+            I ran cmp and found out that they are 89% equal for the upper bank, while the lower bank held the old BIOS version. There seems to be some sort of protection feature that did not end up working, so in the end I overwrote both banks of the chip.
+
+            I assembled all of it back and.. it works! This $300 paperweight came back from the dead.
+        </p>
+    </div>
+    </div>
+
+</div>);
+
+}
+
+
+export default MonitorFix;
