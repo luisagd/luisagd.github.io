@@ -1,4 +1,4 @@
-import{j as e,H as a}from"./index-CDiOqy5b.js";function o(){let t=String.raw`#!/usr/bin/env python3
+import{j as e,H as a}from"./index-BY0MXmdi.js";function o(){let t=String.raw`#!/usr/bin/env python3
 # Model by Luis A.
 # install dependecies with:
 # pip install OpenNMT-py sentencepiece pandas pyarrow
